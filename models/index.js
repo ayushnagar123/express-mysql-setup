@@ -9,16 +9,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
-const dbConfig = {
-  host: process.env.HOST ? process.env.HOST : config.host,
-  port: process.env.DBPORT ? process.env.DBPORT : config.port,
-  password: process.env.PASSWORD ? process.env.PASSWORD : config.password,
-  database: process.env.DATABASE ? process.env.DATABASE : config.database,
-  username: process.env.USERNAME ? process.env.USERNAME : config.username,
-  dialect: config.dialect
-}
-
-let sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
+let sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 fs
   .readdirSync(__dirname)
